@@ -7,3 +7,4 @@ gem "rails"
 gem "discordrb"
 gem "discordrb-webhooks"
 gem "rest-client"
+

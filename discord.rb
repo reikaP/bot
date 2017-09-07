@@ -1,7 +1,6 @@
 # Shikakun Bot!!
 # Created by RubyMine.
-# User: axlyo
-
+# User: axlyody
 
 require 'rubygems'
 require 'discordrb'
@@ -14,12 +13,9 @@ config = YAML.load_file('config.yaml')
 bot = Discordrb::Commands::CommandBot.new token: config['token'], client_id: config['client_id'], prefix: '.', advanced_functionality: true, help_command: 'shikakun'
 moonkaini = Moonkaini.new
 
-
-
 bot.ready do
   bot.game = '.ask_shikakun for help'
 end
-
 
 bot.command :vn, description:'Get the visual novel information including download link itself' do |event, action, *args|
   case action
@@ -63,11 +59,7 @@ bot.command :vn, description:'Get the visual novel information including downloa
      '
       end
   end
-
-
 end
-
-
 
 bot.command :ask_shikakun do |event|
   event.channel.send_embed message = 'Getting help with commands' do |embed|
@@ -81,8 +73,4 @@ bot.command :ask_shikakun do |event|
   end
 end
 
-
-
-
-bot.send_message('345120884899446784','Bikin apaan tuh?')
 bot.run

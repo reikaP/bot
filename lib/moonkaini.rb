@@ -1,6 +1,6 @@
 # Shikakun Bot!!
 # Created by RubyMine.
-# User: axlyo
+# User: axlyody
 
 
 require 'rubygems'
@@ -31,14 +31,6 @@ class Moonkaini
     getdata.each { |item|
         selected += '· '+item['name']+"\n"
     }
-
     return selected
-
-
-
   end
-
-
-
-
 end
