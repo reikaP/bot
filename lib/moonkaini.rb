@@ -27,10 +27,20 @@ class Moonkaini
   def findby_letter(letter)
     getapi = RestClient.get "#{$api}/public", :params => {:q => 'sort', :letter => letter}
     getdata = JSON.parse(getapi)
-    selected = ""
+    results = ""
     getdata.each { |item|
-        selected += '· '+item['name']+"\n"
+      results += '· '+item['name']+"\n"
     }
-    return selected
+    results
+  end
+
+  def this_month()
+    getapi = RestClient.get url "#{$api}/public", :params => {:q => 'this_month'}
+    getdata = JSON.parse(getapi)
+    results = ""
+    getdata.each {|item|
+      results += '· '+item['name']+"\n"
+    }
+    results
   end
 end
