@@ -30,20 +30,36 @@ bot.command :vn, description:'Get the visual novel information including downloa
     when "get"
       getobject = moonkaini.findby_vn(args.join(' '))
       event.channel.send_embed do |embed|
-        if getobject[0] == 'Unknown'
+        if getobject[1] == 'Unknown'
           embed.colour = '#f44336'
           embed.title = 'Hmmm...'
           embed.description = '"'+args.join(' ')+'" was not found.'
           embed.image = Discordrb::Webhooks::EmbedImage.new(url: 'https://moonkaini.co/ui/images/toa1.png')
         else
-          embed.title = getobject[0]
-          embed.description = getobject[3]
-          embed.image = Discordrb::Webhooks::EmbedImage.new(url: 'https://'+getobject[6])
-          embed.add_field(name: 'Original', value: getobject[2], inline: true)
-          embed.add_field(name: 'Released', value: getobject[4], inline: true)
-          embed.add_field(name: 'Download', value: getobject[5], inline: false)
-          embed.add_field(name: 'VNDB', value: 'https://vndb.org/v/all?sq='+URI.encode(getobject[0]), inline: false)
-          embed.colour = "#6689d6"
+          if getobject[6] == 'Unknown'
+            embed.title = getobject[0]
+            embed.description = 'No specific information for this vn due limitation data that we got using VNDB API.'
+            embed.add_field(name: 'Download', value: getobject[5], inline: false)
+            embed.add_field(name: 'VNDB', value: 'https://vndb.org/v/all?sq='+URI.encode(getobject[0]), inline: false)
+          else
+            embed.title = getobject[0]
+            if getobject[3]
+              embed.description = getobject[3]
+            end
+            if getobject[6]
+              embed.image = Discordrb::Webhooks::EmbedImage.new(url: 'https://'+getobject[6])
+            end
+            if getobject[2]
+              embed.add_field(name: 'Original', value: getobject[2], inline: true)
+            end
+            if getobject[4]
+              embed.add_field(name: 'Released', value: getobject[4], inline: true)
+            end
+            if getobject[5]
+              embed.add_field(name: 'Download', value: getobject[5], inline: false)
+            end
+            embed.colour = "#6689d6"
+          end
         end
       end
     else
