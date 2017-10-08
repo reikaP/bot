@@ -3,7 +3,6 @@
 # User: axlyody
 
 
-require 'rubygems'
 require 'rest-client'
 require 'json'
 require 'yaml'
@@ -22,7 +21,8 @@ class Moonkaini
     released = getdata.first['released']
     link = getdata.first['link']
     image = getdata.first['image']
-    [name,id,original,description,released,link,image]
+    developer = getdata.first['developer']
+    [name, id, original, description, released, link, image, developer]
   end
   def findby_letter(letter)
     getapi = RestClient.get "#{$api}/public", :params => {:q => 'sort', :letter => letter}
@@ -35,7 +35,7 @@ class Moonkaini
   end
 
   def this_month()
-    getapi = RestClient.get url "#{$api}/public", :params => {:q => 'this_month'}
+    getapi = RestClient.get "#{$api}/public", :params => {:q => 'this-month'}
     getdata = JSON.parse(getapi)
     results = ""
     getdata.each {|item|
