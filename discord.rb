@@ -102,7 +102,6 @@ bot.command :ask_shikakun do |event|
     embed.title = 'Shikakun Bot!! Ruby ver.'
     embed.description = "
     **List of available service**
-
      "
     embed.add_field(name: 'Moonkaini', value: '.vn', inline: true)
     embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: 'shikakun.moe', icon_url: 'https://moonkaini.co/ui/images/toa1.png')
